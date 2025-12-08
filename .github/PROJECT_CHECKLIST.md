@@ -3,11 +3,11 @@
 ## Phase 1: Project Setup & Configuration
 
 ### 1.1 Initialize Project Structure
-- [ ] Create backend folder for .NET API
-- [ ] Create frontend folder for React app
-- [ ] Initialize Git repository
-- [ ] Create .gitignore files for both projects
-- [ ] Create README.md with project overview
+- [x] Create backend folder for .NET API
+- [x] Create frontend folder for React app
+- [x] Initialize Git repository
+- [x] Create .gitignore files for both projects
+- [x] Create README.md with project overview
 
 ### 1.2 Backend Setup (.NET)
 - [ ] Install .NET 8 SDK
