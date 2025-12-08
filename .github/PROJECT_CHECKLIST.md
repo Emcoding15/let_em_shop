@@ -69,16 +69,16 @@
 - [x] Apply migration to database
 
 ### 2.3 Seed Data
-- [ ] Create seed data for categories
-- [ ] Create seed data for sample products
-- [ ] Create admin user seed data
+- [x] Create seed data for categories
+- [x] Create seed data for sample products
+- [x] Create admin user seed data
 
 ---
 
 ## Phase 3: Backend API Development
 
 ### 3.1 Authentication & Authorization
-- [ ] Implement ASP.NET Identity
+- [x] Implement ASP.NET Identity
 - [ ] Create registration endpoint
 - [ ] Create login endpoint
 - [ ] Create JWT token generation
