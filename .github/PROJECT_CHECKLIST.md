@@ -62,11 +62,11 @@
 - [x] Configure Entity relationships
 
 ### 2.2 Entity Framework Configuration
-- [ ] Create DbContext class
-- [ ] Configure entity mappings
-- [ ] Set up migrations
-- [ ] Create initial migration
-- [ ] Apply migration to database
+- [x] Create DbContext class
+- [x] Configure entity mappings
+- [x] Set up migrations
+- [x] Create initial migration
+- [x] Apply migration to database
 
 ### 2.3 Seed Data
 - [ ] Create seed data for categories
