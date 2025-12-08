@@ -57,9 +57,9 @@
 ## Phase 2: Database Design & Setup
 
 ### 2.1 Database Schema Design
-- [ ] Design database schema (Users, Products, Categories, Orders, OrderItems, Cart, Reviews, etc.)
-- [ ] Create Entity models in .NET
-- [ ] Configure Entity relationships
+- [x] Design database schema (Users, Products, Categories, Orders, OrderItems, Cart, Reviews, etc.)
+- [x] Create Entity models in .NET
+- [x] Configure Entity relationships
 
 ### 2.2 Entity Framework Configuration
 - [ ] Create DbContext class
