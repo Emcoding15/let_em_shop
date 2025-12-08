@@ -69,9 +69,9 @@
 - [x] Apply migration to database
 
 ### 2.3 Seed Data
-- [ ] Create seed data for categories
-- [ ] Create seed data for sample products
-- [ ] Create admin user seed data
+- [x] Create seed data for categories
+- [x] Create seed data for sample products
+- [x] Create admin user seed data
 
 ---
 

@@ -24,7 +24,17 @@ builder.Services.AddCors(options =>
 });
 
 
+
 var app = builder.Build();
+
+// Seed initial categories
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    AppDbContext.SeedCategories(dbContext);
+    AppDbContext.SeedProducts(dbContext);
+    AppDbContext.SeedAdminUser(dbContext);
+}
 
 // Configure the HTTP request pipeline.
 
