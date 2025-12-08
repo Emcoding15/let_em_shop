@@ -42,15 +42,15 @@
 - [x] Create folder structure (components, pages, hooks, services, utils)
 
 ### 1.4 Docker Setup
-- [ ] Create Dockerfile for backend
-- [ ] Create Dockerfile for frontend
-- [ ] Create docker-compose.yml with services:
-  - [ ] PostgreSQL
-  - [ ] Redis
-  - [ ] Backend API
-  - [ ] Frontend (optional for local dev)
-- [ ] Create .dockerignore files
-- [ ] Test Docker setup locally
+- [x] Create Dockerfile for backend
+- [x] Create Dockerfile for frontend
+- [x] Create docker-compose.yml with services:
+  - [x] PostgreSQL
+  - [x] Redis
+  - [x] Backend API
+  - [x] Frontend (optional for local dev)
+- [x] Create .dockerignore files
+- [x] Test Docker setup locally
 
 ---
 
