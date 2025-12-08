@@ -10,36 +10,36 @@
 - [x] Create README.md with project overview
 
 ### 1.2 Backend Setup (.NET)
-- [ ] Install .NET 8 SDK
-- [ ] Create ASP.NET Core Web API project
-- [ ] Configure project structure (Controllers, Services, Models, DTOs)
-- [ ] Install required NuGet packages:
-  - [ ] Entity Framework Core
-  - [ ] Npgsql.EntityFrameworkCore.PostgreSQL
-  - [ ] ASP.NET Identity
-  - [ ] Stripe.net
-  - [ ] StackExchange.Redis
-  - [ ] Serilog
-  - [ ] AutoMapper
-  - [ ] FluentValidation
-- [ ] Configure appsettings.json (connection strings, API keys placeholders)
-- [ ] Set up CORS policy for frontend
+- [x] Install .NET 8 SDK
+- [x] Create ASP.NET Core Web API project
+- [x] Configure project structure (Controllers, Services, Models, DTOs)
+- [x] Install required NuGet packages:
+  - [x] Entity Framework Core
+  - [x] Npgsql.EntityFrameworkCore.PostgreSQL
+  - [x] ASP.NET Identity
+  - [x] Stripe.net
+  - [x] StackExchange.Redis
+  - [x] Serilog
+  - [x] AutoMapper
+  - [x] FluentValidation
+- [x] Configure appsettings.json (connection strings, API keys placeholders)
+- [x] Set up CORS policy for frontend
 
 ### 1.3 Frontend Setup (React)
-- [ ] Install Node.js and npm
-- [ ] Create React app with Vite
-- [ ] Install required npm packages:
-  - [ ] TailwindCSS
-  - [ ] @tanstack/react-query
-  - [ ] react-hook-form
-  - [ ] zod
-  - [ ] axios
-  - [ ] react-router-dom
-  - [ ] @stripe/stripe-js
-  - [ ] @stripe/react-stripe-js
-- [ ] Configure Tailwind CSS
-- [ ] Set up React Router
-- [ ] Create folder structure (components, pages, hooks, services, utils)
+- [x] Install Node.js and npm
+- [x] Create React app with Vite
+- [x] Install required npm packages:
+  - [x] TailwindCSS
+  - [x] @tanstack/react-query
+  - [x] react-hook-form
+  - [x] zod
+  - [x] axios
+  - [x] react-router-dom
+  - [x] @stripe/stripe-js
+  - [x] @stripe/react-stripe-js
+- [x] Configure Tailwind CSS
+- [x] Set up React Router
+- [x] Create folder structure (components, pages, hooks, services, utils)
 
 ### 1.4 Docker Setup
 - [ ] Create Dockerfile for backend
