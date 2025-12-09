@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using backend.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +13,27 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Add Identity services
 builder.Services.AddIdentity<backend.Models.User, Microsoft.AspNetCore.Identity.IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
+
+// Add JWT authentication
+var jwtSettings = builder.Configuration.GetSection("Jwt");
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidAudience = jwtSettings["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]!))
+    };
+});
 
 // Add controller support
 builder.Services.AddControllers();
@@ -53,6 +77,10 @@ if (app.Environment.IsDevelopment())
 
 // Use CORS policy
 app.UseCors("FrontendPolicy");
+
+// Use authentication and authorization
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseHttpsRedirection();
 

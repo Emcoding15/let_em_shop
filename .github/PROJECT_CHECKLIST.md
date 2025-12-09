@@ -81,7 +81,7 @@
 - [x] Implement ASP.NET Identity
 - [x] Create registration endpoint
 - [x] Create login endpoint
-- [ ] Create JWT token generation
+- [x] Create JWT token generation
 - [ ] Implement refresh token mechanism
 - [ ] Create password reset functionality
 - [ ] Set up role-based authorization (Admin, Customer)

@@ -1,7 +1,13 @@
+
 using backend.DTOs;
 using backend.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace backend.Controllers
 {
@@ -10,10 +16,12 @@ namespace backend.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
+        private readonly IConfiguration _config;
 
-        public AuthController(UserManager<User> userManager)
+        public AuthController(UserManager<User> userManager, IConfiguration config)
         {
             _userManager = userManager;
+            _config = config;
         }
 
         [HttpPost("register")]
@@ -46,8 +54,28 @@ namespace backend.Controllers
             {
                 return Unauthorized("Invalid email or password");
             }
-            // TODO: Generate JWT token here
-            return Ok("Login successful");
+
+            // Generate JWT token
+            var jwtSettings = _config.GetSection("Jwt");
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email ?? string.Empty),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+            var keyString = jwtSettings["Key"] ?? throw new InvalidOperationException("JWT Key is not configured.");
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyString));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expires = DateTime.UtcNow.AddMinutes(double.Parse(jwtSettings["ExpiresInMinutes"] ?? "60"));
+            var token = new JwtSecurityToken(
+                issuer: jwtSettings["Issuer"],
+                audience: jwtSettings["Audience"],
+                claims: claims,
+                expires: expires,
+                signingCredentials: creds
+            );
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            return Ok(new { token = tokenString });
         }
     }
 }
