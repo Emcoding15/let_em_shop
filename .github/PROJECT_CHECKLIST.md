@@ -80,7 +80,7 @@
 ### 3.1 Authentication & Authorization
 - [x] Implement ASP.NET Identity
 - [x] Create registration endpoint
-- [ ] Create login endpoint
+- [x] Create login endpoint
 - [ ] Create JWT token generation
 - [ ] Implement refresh token mechanism
 - [ ] Create password reset functionality

@@ -32,5 +32,22 @@ namespace backend.Controllers
             }
             return Ok("Registration successful");
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDto dto)
+        {
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user == null)
+            {
+                return Unauthorized("Invalid email or password");
+            }
+            var passwordValid = await _userManager.CheckPasswordAsync(user, dto.Password);
+            if (!passwordValid)
+            {
+                return Unauthorized("Invalid email or password");
+            }
+            // TODO: Generate JWT token here
+            return Ok("Login successful");
+        }
     }
 }
