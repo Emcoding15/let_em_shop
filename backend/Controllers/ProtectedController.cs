@@ -9,9 +9,10 @@ namespace backend.Controllers
     public class ProtectedController : ControllerBase
     {
         [HttpGet("secret")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Secret()
         {
-            return Ok("You are authenticated and can access this protected endpoint!");
+            return Ok("You are authenticated as an Admin and can access this protected endpoint!");
         }
     }
 }

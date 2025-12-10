@@ -55,14 +55,18 @@ namespace backend.Controllers
                 return Unauthorized("Invalid email or password");
             }
 
-            // Generate JWT token
+            // Generate JWT token with roles
             var jwtSettings = _config.GetSection("Jwt");
-            var claims = new[]
+            var userRoles = await _userManager.GetRolesAsync(user);
+            var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email ?? string.Empty),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
+            // Add role claims
+            claims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
+
             var keyString = jwtSettings["Key"] ?? throw new InvalidOperationException("JWT Key is not configured.");
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyString));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
