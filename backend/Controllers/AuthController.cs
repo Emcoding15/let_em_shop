@@ -38,6 +38,8 @@ namespace backend.Controllers
             {
                 return BadRequest(result.Errors);
             }
+            // Assign Customer role to new user
+            await _userManager.AddToRoleAsync(user, "Customer");
             return Ok("Registration successful");
         }
 
