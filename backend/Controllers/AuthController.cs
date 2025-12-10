@@ -125,6 +125,38 @@ namespace backend.Controllers
             return Ok(new { token = tokenString, refreshToken = newRefreshToken });
         }
 
+        [HttpPost("request-password-reset")]
+        public async Task<IActionResult> RequestPasswordReset([FromBody] string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                // For security, do not reveal if the email is not registered
+                return Ok();
+            }
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            // TODO: Send token via email to user.Email
+            // For now, return the token in the response (for testing only)
+            return Ok(new { resetToken = token });
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
+        {
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user == null)
+            {
+                // For security, do not reveal if the email is not registered
+                return Ok();
+            }
+            var result = await _userManager.ResetPasswordAsync(user, dto.Token, dto.NewPassword);
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+            return Ok("Password has been reset successfully.");
+        }
+
         // Helper method to generate a secure random refresh token
         private static string GenerateRefreshToken()
         {

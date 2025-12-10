@@ -83,7 +83,7 @@
 - [x] Create login endpoint
 - [x] Create JWT token generation
 - [x] Implement refresh token mechanism
-- [ ] Create password reset functionality
+- [x] Create password reset functionality
 - [ ] Set up role-based authorization (Admin, Customer)
 
 ### 3.2 User Management
