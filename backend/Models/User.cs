@@ -8,6 +8,10 @@ namespace backend.Models
         public string Name { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
 
+        // Refresh token properties
+        public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiryTime { get; set; }
+
         // Navigation property
         public ICollection<Order> Orders { get; set; } = new List<Order>();
 

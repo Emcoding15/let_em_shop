@@ -82,7 +82,7 @@
 - [x] Create registration endpoint
 - [x] Create login endpoint
 - [x] Create JWT token generation
-- [ ] Implement refresh token mechanism
+- [x] Implement refresh token mechanism
 - [ ] Create password reset functionality
 - [ ] Set up role-based authorization (Admin, Customer)
 
