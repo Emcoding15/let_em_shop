@@ -87,7 +87,7 @@
 - [x] Set up role-based authorization (Admin, Customer)
 
 ### 3.2 User Management
-- [ ] Create user profile endpoints (GET, PUT)
+- [x] Create user profile endpoints (GET, PUT)
 - [ ] Create address management endpoints
 - [ ] Create order history endpoint
 

@@ -36,5 +36,26 @@ namespace backend.Controllers
                 user.Name
             });
         }
+
+        [HttpPut("me")]
+        public async Task<IActionResult> UpdateProfile([FromBody] backend.DTOs.UpdateProfileDto dto)
+        {
+            var userId = User.FindFirstValue(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (userId == null)
+                return Unauthorized();
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return NotFound();
+
+            user.Name = dto.Name;
+            user.Email = dto.Email;
+            user.UserName = dto.Email;
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            return Ok(new { user.Id, user.Email, user.Name });
+        }
     }
 }
