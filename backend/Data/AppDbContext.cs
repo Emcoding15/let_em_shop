@@ -16,6 +16,8 @@ namespace backend.Data
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Review> Reviews { get; set; }
 
+            public DbSet<Address> Addresses { get; set; }
+
         // You can override OnModelCreating for further configuration if needed
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
