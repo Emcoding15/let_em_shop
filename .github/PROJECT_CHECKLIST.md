@@ -89,7 +89,7 @@
 ### 3.2 User Management
 - [x] Create user profile endpoints (GET, PUT)
 - [x] Create address management endpoints
-- [ ] Create order history endpoint
+- [x] Create order history endpoint
 
 ### 3.3 Product Management
 - [ ] Create product CRUD endpoints
