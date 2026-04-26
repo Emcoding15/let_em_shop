@@ -5,6 +5,7 @@
 - Always follow the step-by-step process outlined in `PROJECT_CHECKLIST.md`.
 - When asked for help, refer to the current phase and tasks in the checklist.
 - Provide code, explanations, and best practices for each checklist item.
+Before making any changes, first tell me in detail what you plan to do, then wait for my decision; only proceed if I explicitly approve.
 - Do not skip steps unless specifically instructed.
 - If clarification is needed, ask for specifics about the current checklist item.
 - Mark completed tasks in the checklist as development progresses.
