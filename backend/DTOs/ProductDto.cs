@@ -11,6 +11,12 @@ namespace backend.DTOs
         public int TotalPages { get; set; }
     }
 
+    public class ImageUploadResultDto
+    {
+        public string Url { get; set; } = string.Empty;
+        public string PublicId { get; set; } = string.Empty;
+    }
+
     public class ProductDto
     {
         public int Id { get; set; }

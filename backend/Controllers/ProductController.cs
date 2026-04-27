@@ -1,6 +1,7 @@
 using backend.Data;
 using backend.DTOs;
 using backend.Models;
+using backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,12 @@ namespace backend.Controllers
     public class ProductController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly IImageStorageService _imageStorageService;
 
-        public ProductController(AppDbContext context)
+        public ProductController(AppDbContext context, IImageStorageService imageStorageService)
         {
             _context = context;
+            _imageStorageService = imageStorageService;
         }
 
         // GET: api/Product
@@ -244,6 +247,60 @@ namespace backend.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        // POST: api/Product/{id}/image
+        [HttpPost("{id:int}/image")]
+        [Authorize(Roles = "Admin")]
+        [Consumes("multipart/form-data")]
+        public async Task<ActionResult<ImageUploadResultDto>> UploadProductImage(
+            int id,
+            [FromForm] IFormFile file,
+            CancellationToken cancellationToken)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest(new { message = "Image file is required." });
+            }
+
+            const long maxFileSizeBytes = 5 * 1024 * 1024;
+            if (file.Length > maxFileSizeBytes)
+            {
+                return BadRequest(new { message = "Image file must be 5MB or smaller." });
+            }
+
+            var allowedContentTypes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "image/jpeg",
+                "image/png",
+                "image/webp"
+            };
+
+            if (!allowedContentTypes.Contains(file.ContentType))
+            {
+                return BadRequest(new { message = "Only JPG, PNG, and WEBP images are allowed." });
+            }
+
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            ImageUploadResultDto uploadResult;
+            try
+            {
+                uploadResult = await _imageStorageService.UploadProductImageAsync(file, cancellationToken);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
+            }
+
+            product.ImageUrl = uploadResult.Url;
+            await _context.SaveChangesAsync();
+
+            return Ok(uploadResult);
         }
     }
 }

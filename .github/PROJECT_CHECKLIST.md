@@ -96,7 +96,7 @@
 - [x] Implement product search and filtering
 - [x] Implement pagination
 - [x] Create category endpoints
-- [ ] Implement product image upload
+- [x] Implement product image upload
 
 ### 3.4 Shopping Cart
 - [ ] Create cart endpoints (add, remove, update quantity)
