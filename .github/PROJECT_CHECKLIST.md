@@ -95,7 +95,7 @@
 - [x] Create product CRUD endpoints
 - [x] Implement product search and filtering
 - [x] Implement pagination
-- [ ] Create category endpoints
+- [x] Create category endpoints
 - [ ] Implement product image upload
 
 ### 3.4 Shopping Cart
